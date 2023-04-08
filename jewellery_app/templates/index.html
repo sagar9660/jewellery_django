@@ -7,44 +7,37 @@
   <header id="header" class="header">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
-        {% for img in sliders %}
-        <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="" aria-label="Slide 1">
+        {% for var in sliders %}
+        <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="{{var}}" class="" aria-label="Slide {{var}}">
+        {% comment %} <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="" aria-label="Slide 1"> {% endcomment %}
           {% comment %} <img class="img-fluid" src="{% static 'images/image-je.jpg' %}" alt="Image"> {% endcomment %}
-          <img class="img-fluid" src="{{ img.featured.url }}" alt="Image">
+          <img class="img-fluid" src="{{ var.img.url }}" alt="Image">
           {% comment %} {{ img.title }} {% endcomment %}
         </button>
         {% endfor %}
-        <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2" class="">
+        {% comment %} <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2" class="">
           <img class="img-fluid" src="{% static 'images/golden-woman-beaut.jpg' %}" alt="Image">
         </button>
         <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3" class="active"
           aria-current="true">
           <img class="img-fluid" src="{% static 'images/image-je.jpg' %}" alt="Image">
-        </button>
+        </button> {% endcomment %}
       </div>
-      {% for img in sliders %}
       <div class="carousel-inner">
-        <div class="carousel-item">
-          <img class="w-100" src="{% static 'images/image-je.jpg' %}" alt="Image">
-          {% comment %} <img class="w-100" src="{{ img.slider.url }}" alt="Image"> {% endcomment %}
+        {% for var in sliders %}
+        {% comment %} var Active = (var == 0)? 'active': '' {% endcomment %}
+        <div class="carousel-item active">
+          {% comment %} <img class="w-100" src="{% static 'images/image-je.jpg' %}" alt="Image"> {% endcomment %}
+          <img class="img-fluid w-100" src="{{ var.img.url }}" alt="Image">
           <div class="carousel-caption">
             <div class="p-3" style="max-width: 900px;">
-              {% comment %} {% for var in sliders %} {% endcomment %}
-          {% comment %} <img class="img-fluid" src="{{ var.slider.url }}" alt="Image"> {% endcomment %}
-          {% comment %} {{ var.slider.img1.url }} {% endcomment %}
-          {% comment %} {% endfor %} {% endcomment %}
-          {% comment %} {% for var in sliders %} {% endcomment %}
-              {% comment %} <h2 class=" text-white mb-4  zoomIn">Jewellery &amp; For The Feminine In You</h2> {% endcomment %}
-              <h2 class=" text-white mb-4  zoomIn">{{ img.title }}</h2>
-              {% comment %} <h2 class=" text-white mb-4  zoomIn">{{ var.title }}</h2> {% endcomment %}
-              {% comment %} <p class="text-white text-uppercase mb-4  zoomIn"> Take a moment and cherish the grand collection </p> {% endcomment %}
-              <p class="text-white text-uppercase mb-4  zoomIn"> {{ img.subtitle }} </p>
-              {% comment %} {% endfor %} {% endcomment %}
+              <h2 class=" text-white mb-4  zoomIn">{{ var.title }}</h2>
+              <p class="text-white text-uppercase mb-4  zoomIn"> {{ var.subtitle }} </p>
             </div>
           </div>
         </div>
         {% endfor %}
-        <div class="carousel-item">
+        {% comment %} <div class="carousel-item">
           <img class="w-100" src="{% static 'images/golden-woman-beaut.jpg' %}" alt="Image">
           <div class="carousel-caption">
             <div class="p-3" style="max-width: 900px;">
@@ -55,7 +48,7 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item active">
+        <div class="carousel-item">
           <img class="w-100" src="{% static 'images/image-je.jpg' %}" alt="Image">
           <div class="carousel-caption">
             <div class="p-3" style="max-width: 900px;">
@@ -64,7 +57,7 @@
               <p class="text-white text-uppercase mb-4  zoomIn"> Take a moment and cherish the grand collection </p>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
