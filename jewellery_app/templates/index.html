@@ -6,29 +6,17 @@
 <!-- Header -->
   <header id="header" class="header">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
+      <ol class="carousel-indicators">
         {% for var in sliders %}
-        <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="{{var}}" class="" aria-label="Slide {{var}}">
-        {% comment %} <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="" aria-label="Slide 1"> {% endcomment %}
-          {% comment %} <img class="img-fluid" src="{% static 'images/image-je.jpg' %}" alt="Image"> {% endcomment %}
+        <li data-bs-target="#header-carousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %} aria-label="Slide {{var.id}}">
           <img class="img-fluid" src="{{ var.img.url }}" alt="Image">
-          {% comment %} {{ img.title }} {% endcomment %}
-        </button>
+        </li>
         {% endfor %}
-        {% comment %} <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2" class="">
-          <img class="img-fluid" src="{% static 'images/golden-woman-beaut.jpg' %}" alt="Image">
-        </button>
-        <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3" class="active"
-          aria-current="true">
-          <img class="img-fluid" src="{% static 'images/image-je.jpg' %}" alt="Image">
-        </button> {% endcomment %}
-      </div>
+      </ol>
       <div class="carousel-inner">
         {% for var in sliders %}
-        {% comment %} var Active = (var == 0)? 'active': '' {% endcomment %}
-        <div class="carousel-item active">
-          {% comment %} <img class="w-100" src="{% static 'images/image-je.jpg' %}" alt="Image"> {% endcomment %}
-          <img class="img-fluid w-100" src="{{ var.img.url }}" alt="Image">
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img class="" width="1349" height="553" src="{{ var.img.url }}" alt="Image">
           <div class="carousel-caption">
             <div class="p-3" style="max-width: 900px;">
               <h2 class=" text-white mb-4  zoomIn">{{ var.title }}</h2>
@@ -37,27 +25,6 @@
           </div>
         </div>
         {% endfor %}
-        {% comment %} <div class="carousel-item">
-          <img class="w-100" src="{% static 'images/golden-woman-beaut.jpg' %}" alt="Image">
-          <div class="carousel-caption">
-            <div class="p-3" style="max-width: 900px;">
-
-              <h2 class=" text-white mb-4  zoomIn">Jewellery &amp; For The Feminine In You</h2>
-              <p class="text-white text-uppercase mb-4  zoomIn"> Take a moment and cherish the grand collection </p>
-
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img class="w-100" src="{% static 'images/image-je.jpg' %}" alt="Image">
-          <div class="carousel-caption">
-            <div class="p-3" style="max-width: 900px;">
-
-              <h2 class=" text-white mb-4  zoomIn">Jewellery &amp; For The Feminine In You</h2>
-              <p class="text-white text-uppercase mb-4  zoomIn"> Take a moment and cherish the grand collection </p>
-            </div>
-          </div>
-        </div> {% endcomment %}
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -84,11 +51,13 @@
           <div class="col-12">
             <nav>
               <div class="nav nav-tabs watch-tabs mb-4 justify-content-center" id="nav-tab" role="tablist">
+                {% for cat in categories %}
                 <button class="nav-link active me-lg-5" id="nav-latest-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-latest" type="button" role="tab" aria-controls="nav-latest"
-                  aria-selected="true">Necklace </button>
+                  aria-selected="{% if cat.selected %}true{% else %}false{% endif %}">{{cat.title}} </button>
+                  {% endfor %}
 
-                <button class="nav-link me-lg-5" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular"
+                {% comment %} <button class="nav-link me-lg-5" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular"
                   type="button" role="tab" aria-controls="nav-popular" aria-selected="false">Rings</button>
 
                 <button class="nav-link me-lg-5" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular"
@@ -98,7 +67,7 @@
                   type="button" role="tab" aria-controls="nav-popular" aria-selected="false">Earnings</button>
 
                 <button class="nav-link" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular"
-                  type="button" role="tab" aria-controls="nav-popular" aria-selected="false">Mangalsutra</button>
+                  type="button" role="tab" aria-controls="nav-popular" aria-selected="false">Mangalsutra</button> {% endcomment %}
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
