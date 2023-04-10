@@ -51,11 +51,13 @@
           <div class="col-12">
             <nav>
               <div class="nav nav-tabs watch-tabs mb-4 justify-content-center" id="nav-tab" role="tablist">
-                {% for cat in categories %}
+                {% comment %} {% for cat in categories %}
                 <button class="nav-link active me-lg-5" id="nav-latest-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-latest" type="button" role="tab" aria-controls="nav-latest"
                   aria-selected="{% if cat.selected %}true{% else %}false{% endif %}">{{cat.title}} </button>
-                  {% endfor %}
+                  {% endfor %} {% endcomment %}
+
+                  <button class="nav-link active me-lg-5" id="nav-latest-tab" data-bs-toggle="tab" data-bs-target="#nav-latest" type="button" role="tab" aria-controls="nav-latest" aria-selected="true">Necklace </button>
 
                 {% comment %} <button class="nav-link me-lg-5" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular"
                   type="button" role="tab" aria-controls="nav-popular" aria-selected="false">Rings</button>
